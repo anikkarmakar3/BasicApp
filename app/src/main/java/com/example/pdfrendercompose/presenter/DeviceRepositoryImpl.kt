@@ -3,11 +3,14 @@ package com.example.pdfrendercompose.presenter
 import com.example.pdfrendercompose.data.domainmodel.Device
 import com.example.pdfrendercompose.data.local.DeviceDao
 import com.example.pdfrendercompose.data.local.DeviceEntity
+import com.example.pdfrendercompose.data.local.UserEntity
+import com.example.pdfrendercompose.data.local.UserEntityDao
 import com.example.pdfrendercompose.data.remote.ApiService
 
 class DeviceRepositoryImpl(
     private val api: ApiService,
-    private val dao: DeviceDao
+    private val dao: DeviceDao,
+    private val userDao: UserEntityDao,
 ) : DeviceRepository {
     override suspend fun fetchAndCacheDevices() {
         val response = api.getDevices()
@@ -22,6 +25,10 @@ class DeviceRepositoryImpl(
             )
         }
         dao.insertDevices(entities)
+    }
+
+    override suspend fun insertUser(userName: String, email: String) {
+        userDao.insertDevices(UserEntity(id = 0,userName,email))
     }
 
     override suspend fun getCachedDevices(): List<Device> {

@@ -67,7 +67,6 @@ import com.example.pdfrendercompose.presenter.DeviceViewModel
 import com.example.pdfrendercompose.route.Routes
 import com.example.pdfrendercompose.screens.DeviceListScreen
 import com.example.pdfrendercompose.ui.theme.PdfRenderComposeTheme
-import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -100,21 +99,18 @@ class MainActivity : ComponentActivity() {
     fun MyApp(viewModel: DeviceViewModel) {
         val navController = rememberNavController()
         NavHost(navController, startDestination = Routes.Login) {
-            composable(Routes.Login) { LoginScreen(navController) }
+            composable(Routes.Login) { LoginScreen(navController,viewModel) }
             composable(Routes.Home) { HomeScreen(navController) }
             composable(Routes.Image) { ImageScreen(navController) }
             composable(Routes.Data) { DeviceListScreen(viewModel) }
-            /*composable(Routes.Detail + "/{id}") { backStackEntry ->
-                val id = backStackEntry.arguments?.getString("id")
-                id?.let { DetailScreen(navController, it) }
-            }*/
         }
     }
 
     @Composable
-    fun LoginScreen(navController: NavHostController) {
+    fun LoginScreen(navController: NavHostController,viewModel: DeviceViewModel) {
         val context = LocalContext.current
         val launcher = rememberFirebaseAuthLauncher(
+            viewModel,
             onAuthComplete = {
                 navController.navigate(Routes.Home) {
                     popUpTo(Routes.Login) { inclusive = true }
@@ -146,6 +142,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun rememberFirebaseAuthLauncher(
+        viewModel: DeviceViewModel,
         onAuthComplete: (FirebaseUser?) -> Unit,
         onAuthError: (Exception) -> Unit
     ): ManagedActivityResultLauncher<Intent, ActivityResult> {
@@ -159,6 +156,7 @@ class MainActivity : ComponentActivity() {
                 FirebaseAuth.getInstance().signInWithCredential(credential)
                     .addOnCompleteListener { authResult ->
                         if (authResult.isSuccessful) {
+                            viewModel.insertUser(authResult.result.user?.displayName?:"",authResult.result.user?.email?:"")
                             onAuthComplete(FirebaseAuth.getInstance().currentUser)
                         } else {
                             onAuthError(authResult.exception ?: Exception("Auth failed"))

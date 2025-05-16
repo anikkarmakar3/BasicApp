@@ -21,5 +21,5 @@ object AppModule {
         Room.databaseBuilder(context, AppDatabase::class.java, "app_db").build()
 
     fun provideRepository(api: ApiService, db: AppDatabase): DeviceRepository =
-        DeviceRepositoryImpl(api, db.deviceDao())
+        DeviceRepositoryImpl(api, db.deviceDao(), db.userDao())
 }

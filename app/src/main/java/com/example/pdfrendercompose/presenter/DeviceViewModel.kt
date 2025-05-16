@@ -22,4 +22,10 @@ class DeviceViewModel(private val repo: DeviceRepository) : ViewModel() {
             _devices.value = repo.getCachedDevices()
         }
     }
+
+    fun insertUser(userName:String, email:String){
+        viewModelScope.launch {
+            repo.insertUser(userName,email)
+        }
+    }
 }
