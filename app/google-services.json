@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1021082948306",
+    "project_id": "pdfrendercompose",
+    "storage_bucket": "pdfrendercompose.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021082948306:android:62741f3c4fbf69d5de130b",
+        "android_client_info": {
+          "package_name": "com.example.pdfrendercompose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy65u3nKaZ4Zq2DwHg0ULk_J2rJjhn1Cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
