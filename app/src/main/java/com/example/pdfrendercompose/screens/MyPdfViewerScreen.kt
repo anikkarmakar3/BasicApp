@@ -10,11 +10,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
+import com.example.pdfrendercompose.presenter.DeviceViewModel
 
 @SuppressLint("SetJavaScriptEnabled")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyPdfViewerScreen() {
+fun MyPdfViewerScreen(viewModel: DeviceViewModel) {
     val pdfUrl = "https://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf"
 
     Scaffold(topBar = {

@@ -10,6 +10,7 @@ import androidx.security.crypto.MasterKey
  */
 object PreferenceUtils {
     private const val PREFS_FILE_NAME = "shared_prefs"
+    const val PREFS_KEY = "switch_state"
     private lateinit var application: Context
 
     fun init(context: Context) {
@@ -17,14 +18,9 @@ object PreferenceUtils {
     }
 
     private fun getSharedPreferences(): SharedPreferences {
-        val masterKeyAlias =
-            MasterKey.Builder(application).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build()
+        val masterKeyAlias = MasterKey.Builder(application).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build()
         return EncryptedSharedPreferences.create(
-            application,
-            PREFS_FILE_NAME,
-            masterKeyAlias,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            application, PREFS_FILE_NAME, masterKeyAlias, EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV, EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
 

@@ -5,5 +5,5 @@ object Routes {
     const val Home = "home"
     const val Image = "image"
     const val Data = "data"
-    const val Detail = "detail"
+    const val PdfRenderScreen = "pdf_render_screen"
 }

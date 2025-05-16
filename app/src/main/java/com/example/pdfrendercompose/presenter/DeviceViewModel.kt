@@ -28,4 +28,11 @@ class DeviceViewModel(private val repo: DeviceRepository) : ViewModel() {
             repo.insertUser(userName,email)
         }
     }
+
+    fun removeDevice(device: Device) {
+        viewModelScope.launch {
+            repo.deleteDevice(device.id.toInt(), device.name)
+            _devices.value = repo.getCachedDevices()
+        }
+    }
 }

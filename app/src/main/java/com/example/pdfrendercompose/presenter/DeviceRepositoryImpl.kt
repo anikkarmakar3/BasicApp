@@ -43,4 +43,8 @@ class DeviceRepositoryImpl(
             )
         }
     }
+
+    override suspend fun deleteDevice(deviceId : Int, deviceName : String) {
+        dao.deleteDevice(deviceId, deviceName)
+    }
 }

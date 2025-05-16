@@ -1,5 +1,6 @@
 package com.example.pdfrendercompose
 
+import MyPdfViewerScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -42,6 +43,7 @@ class MainActivity : ComponentActivity() {
             composable(Routes.Home) { HomeScreen(navController) }
             composable(Routes.Image) { ImageScreen(navController) }
             composable(Routes.Data) { DeviceListScreen(viewModel) }
+            composable(Routes.PdfRenderScreen) { MyPdfViewerScreen(viewModel) }
         }
     }
 

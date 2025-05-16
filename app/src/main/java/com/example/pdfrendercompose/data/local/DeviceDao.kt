@@ -9,4 +9,7 @@ interface DeviceDao {
 
     @Query("SELECT * FROM devices")
     suspend fun getDevices(): List<DeviceEntity>
+
+    @Query("DELETE FROM devices WHERE id = :deviceId and name= :deviceName")
+    suspend fun deleteDevice(deviceId : Int, deviceName: String)
 }
