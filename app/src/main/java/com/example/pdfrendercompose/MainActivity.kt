@@ -66,6 +66,7 @@ import com.example.pdfrendercompose.module.AppModule
 import com.example.pdfrendercompose.presenter.DeviceViewModel
 import com.example.pdfrendercompose.route.Routes
 import com.example.pdfrendercompose.screens.DeviceListScreen
+import com.example.pdfrendercompose.ui.theme.PdfRenderComposeTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -89,7 +90,7 @@ class MainActivity : ComponentActivity() {
         )
         val viewModel = DeviceViewModel(repo)
         setContent {
-            ProvideWindowInsets  {
+            PdfRenderComposeTheme {
                 MyApp(viewModel)
             }
         }
